@@ -1,0 +1,36 @@
+# This is an example of taskctl tasks configuration file. Adjust it to fit your needs
+pipelines:
+  generate:
+    - task: install-php-protoc-grpc
+    - task: generate:php
+      depends_on: [install-php-protoc-grpc]
+    - task: generate:go
+
+tasks:
+  generate:go:
+    description: "Generates client and server for golang"
+    command:
+      - |
+        protoc --proto_path=./api/ \
+        --go_out=plugins=grpc:./pkg/geocoder \
+        ./api/geocoder.proto \
+
+  install-php-protoc-grpc:
+    command:
+      - rm -rf third_party/grpc
+      - git clone -b v1.28.1 https://github.com/grpc/grpc third_party/grpc
+      - cd third_party/grpc && git submodule update --init
+      - cd third_party/grpc && make grpc_php_plugin
+      - cp third_party/grpc/bins/opt/grpc_php_plugin third_party/grpc_php_plugin
+    after: rm -rf third_party/grpc
+
+  generate:php:
+    dir: "{{.Root}}"
+    description: "Generates client's files for PHP"
+    command:
+      - |
+        protoc --proto_path=./api/ \
+        --php_out=./lib/php/php-geocoder-grpc \
+        --plugin=protoc-gen-grpc=./third_party/grpc_php_plugin \
+        --grpc_out=./lib/php/php-geocoder-grpc \
+        ./api/geocoder.proto \

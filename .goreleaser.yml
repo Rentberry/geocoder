@@ -1,0 +1,26 @@
+before:
+  hooks:
+    - go mod download
+
+builds:
+- env:
+  - CGO_ENABLED=0
+  main: cmd/server/server.go
+  goos:
+    - linux
+  goarch:
+    - amd64
+
+dockers:
+  -
+    goos: linux
+    goarch: amd64
+    binaries:
+      - geocoder
+
+    image_templates:
+      - "rentberry/geocoder:latest"
+      - "myuser/myimage:{{ .Tag }}"
+
+    skip_push: true
+    dockerfile: Dockerfile

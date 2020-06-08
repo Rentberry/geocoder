@@ -1,0 +1,79 @@
+syntax = "proto3";
+package geocoder;
+
+option php_namespace = "Rentberry\\Geocoder";
+
+message Location {
+    string provider = 1;
+    string formatted_address = 2;
+    string street_number = 4;
+    string street_name = 5;
+    string locality = 6;
+    string sublocality = 7;
+    string timezone = 8;
+    string postal_code = 9;
+    string id = 20;
+
+    Country country = 3;
+    State state = 12;
+    LatLng latLng = 10;
+    Bounds bounds = 13;
+
+    repeated AdminLevel admin_levels = 11;
+
+    map<string, string> components = 21;
+}
+
+message Bounds {
+    LatLng northEast = 1;
+    LatLng southWest = 2;
+}
+
+message AdminLevel {
+    int32 level = 1;
+    string name = 2;
+    string code = 3;
+}
+
+message Country {
+    string name = 1;
+    string code = 2;
+}
+
+message State {
+    string name = 1;
+    string code = 2;
+}
+
+message LatLng {
+    double lat = 1;
+    double lng = 2;
+}
+
+message Timezone {
+    string code = 1;
+}
+
+message LocationRequest {
+    string provider = 1;
+    string address = 2;
+    LatLng latlng = 3;
+    map<string, string> query = 4;
+}
+
+message LocationResponse {
+    repeated Location locations = 1;
+    bool exists = 2;
+}
+
+message TimezoneRequest {
+    LatLng latlng = 1;
+}
+
+service GeocodeService {
+    rpc Geocode (LocationRequest) returns (LocationResponse);
+}
+
+service TimezoneService {
+    rpc Lookup (TimezoneRequest) returns (Timezone);
+}
