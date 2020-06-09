@@ -1,0 +1,19 @@
+{
+    "name": "rentberry/geocoder-grpc",
+    "description": "PHP gRPC bindings to https://github.com/Rentberry/geocoder",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "ext-grpc": "@stable",
+        "grpc/grpc": "^1.3.0",
+        "google/protobuf": "^3.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rentberry\\Geocoder\\": "lib/php/php-geocoder-grpc/Rentberry/Geocoder"
+        },
+        "classmap": [
+            "lib/php/php-geocoder-grpc/GPBMetadata/Geocoder.php"
+        ]
+    }
+}

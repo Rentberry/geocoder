@@ -121,7 +121,7 @@ func main() {
 
 func setupRedis() (*redis.Client, error) {
 	client := redis.NewClient(&redis.Options{
-		Addr:         fmt.Sprintf("%s:%d", cfg.RedisHost, cfg.RedisHost),
+		Addr:         fmt.Sprintf("%s:%s", cfg.RedisHost, cfg.RedisPort),
 		DB:           15,
 		MinIdleConns: 2,
 		MaxConnAge:   1 * time.Hour,
