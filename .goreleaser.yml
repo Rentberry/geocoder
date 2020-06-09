@@ -20,7 +20,6 @@ dockers:
 
     image_templates:
       - "rentberry/geocoder:latest"
-      - "myuser/myimage:{{ .Tag }}"
+      - "rentberry/geocoder:{{ .Tag }}"
 
-    skip_push: true
     dockerfile: Dockerfile
