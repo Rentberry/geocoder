@@ -126,6 +126,10 @@ func (ag *AggregateProvider) checkInCache(key []byte) (*Result, error) {
 		return nil, err
 	}
 
+	if item == nil {
+		return nil, nil
+	}
+
 	res, ok := item.(Result)
 	if !ok {
 		return nil, errors.New("corrupted cached result")

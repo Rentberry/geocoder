@@ -158,6 +158,9 @@ Find location's timezone by provided coordinates
 ````TimezoneService.Lookup (TimezoneRequest) returns (Timezone)````
 #### Example
 Request:
+```shell script
+ grpcurl -plaintext -import-path ./api -proto geocoder.proto -v -d '{"latLng":{"lat":52.51006317138672, "lng":13.40505599975586}}' 127.0.0.1:8080 geocoder.TimezoneService/Lookup
+```
 ```json5
 {"latlng": {"lat":52.51006317138672, "lng":13.40505599975586}}
 ```

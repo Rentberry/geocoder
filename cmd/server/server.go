@@ -106,7 +106,7 @@ func main() {
 	reg.MustRegister(grpcMetrics)
 	grpcMetrics.InitializeMetrics(grpcServer)
 
-	// Start your http server for prometheus.
+	// Starts http server for prometheus.
 	go func() {
 		if err := httpServer.ListenAndServe(); err != nil {
 			logrus.Fatal("Unable to start a http server.")
