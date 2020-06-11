@@ -91,6 +91,10 @@ func (s Store) SetWithTTL(key []byte, item interface{}, ttl time.Duration) error
 }
 
 func (s Store) Serialize(item interface{}) ([]byte, error) {
+	if item == nil {
+		return nil, nil
+	}
+
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
 	err := enc.Encode(item)
@@ -99,15 +103,4 @@ func (s Store) Serialize(item interface{}) ([]byte, error) {
 	}
 
 	return buf.Bytes(), nil
-}
-
-func (s Store) Unserialize(item []byte) (interface{}, error) {
-	var res interface{}
-	dec := gob.NewDecoder(bytes.NewReader(item))
-	err := dec.Decode(&res)
-	if err != nil {
-		return nil, nil
-	}
-
-	return res, nil
 }
