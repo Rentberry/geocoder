@@ -17,8 +17,8 @@ type CacheStore interface {
 }
 
 type Store struct {
-	rc *redis.Client
-	rs *ristretto.Cache
+	rdb *redis.Client
+	mem *ristretto.Cache
 }
 
 type ristrettoItem struct {
@@ -37,20 +37,20 @@ func NewCacheStore(rc *redis.Client) (*Store, error) {
 		return nil, err
 	}
 
-	return &Store{rc: rc, rs: rs}, nil
+	return &Store{rdb: rc, mem: rs}, nil
 }
 
 func (s *Store) Get(key []byte) (interface{}, error) {
-	item, ok := s.rs.Get(key)
-	if ok {
+	item, ok := s.mem.Get(key)
+	if ok && item != nil {
 		ritem, ok := item.(ristrettoItem)
 		if ok && !time.Now().After(ritem.expireAt) {
 			return ritem.item, nil
 		}
-		s.rs.Del(key)
+		s.mem.Del(key)
 	}
 
-	b, err := s.rc.Get(string(key)).Bytes()
+	b, err := s.rdb.Get(string(key)).Bytes()
 	if err == redis.Nil || b == nil {
 		return nil, nil
 	}
@@ -63,8 +63,8 @@ func (s *Store) Get(key []byte) (interface{}, error) {
 	dec := gob.NewDecoder(bytes.NewReader(b))
 	err = dec.Decode(&res)
 	if err != nil {
-		s.rc.Del(string(key))
-		return nil, nil
+		s.rdb.Del(string(key))
+		return nil, err
 	}
 
 	return res, nil
@@ -80,12 +80,12 @@ func (s Store) SetWithTTL(key []byte, item interface{}, ttl time.Duration) error
 		return err
 	}
 
-	err = s.rc.Set(string(key), data, ttl).Err()
+	err = s.rdb.Set(string(key), data, ttl).Err()
 	if err != nil {
 		return err
 	}
 
-	s.rs.Set(key, ristrettoItem{item: item, expireAt: time.Now().Add(ttl)}, 1)
+	s.mem.Set(key, ristrettoItem{item: item, expireAt: time.Now().Add(ttl)}, 1)
 
 	return nil
 }
