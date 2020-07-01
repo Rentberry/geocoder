@@ -1,4 +1,4 @@
-package cache
+package provider
 
 import (
 	"bytes"
@@ -11,9 +11,9 @@ import (
 var DefaultTTL = 180 * 24 * time.Hour
 
 type CacheStore interface {
-	Get(key []byte) (interface{}, error)
-	Set(key []byte, item interface{}) error
-	SetWithTTL(key []byte, item interface{}, ttl time.Duration) error
+	Get(key []byte) (*Result, error)
+	Set(key []byte, item *Result) error
+	SetWithTTL(key []byte, item *Result, ttl time.Duration) error
 }
 
 type Store struct {
@@ -22,12 +22,13 @@ type Store struct {
 }
 
 type ristrettoItem struct {
-	item     interface{}
-	expireAt time.Time
+	Empty    bool
+	Item     Result
+	ExpireAt time.Time
 }
 
 func NewCacheStore(rc *redis.Client) (*Store, error) {
-	var numberOfItems int64 = 1024
+	var numberOfItems int64 = 2048
 	rs, err := ristretto.NewCache(&ristretto.Config{
 		NumCounters: numberOfItems * 10,
 		MaxCost:     numberOfItems,
@@ -40,12 +41,15 @@ func NewCacheStore(rc *redis.Client) (*Store, error) {
 	return &Store{rdb: rc, mem: rs}, nil
 }
 
-func (s *Store) Get(key []byte) (interface{}, error) {
+func (s *Store) Get(key []byte) (*Result, error) {
 	item, ok := s.mem.Get(key)
 	if ok && item != nil {
 		ritem, ok := item.(ristrettoItem)
-		if ok && !time.Now().After(ritem.expireAt) {
-			return ritem.item, nil
+		if ok && !time.Now().After(ritem.ExpireAt) {
+			if ritem.Empty {
+				return nil, nil
+			}
+			return &ritem.Item, nil
 		}
 		s.mem.Del(key)
 	}
@@ -59,7 +63,7 @@ func (s *Store) Get(key []byte) (interface{}, error) {
 		return nil, err
 	}
 
-	var res interface{}
+	var res Result
 	dec := gob.NewDecoder(bytes.NewReader(b))
 	err = dec.Decode(&res)
 	if err != nil {
@@ -67,14 +71,14 @@ func (s *Store) Get(key []byte) (interface{}, error) {
 		return nil, err
 	}
 
-	return res, nil
+	return &res, nil
 }
 
-func (s *Store) Set(key []byte, item interface{}) error {
+func (s *Store) Set(key []byte, item *Result) error {
 	return s.SetWithTTL(key, item, DefaultTTL)
 }
 
-func (s Store) SetWithTTL(key []byte, item interface{}, ttl time.Duration) error {
+func (s Store) SetWithTTL(key []byte, item *Result, ttl time.Duration) error {
 	data, err := s.Serialize(item)
 	if err != nil {
 		return err
@@ -85,19 +89,23 @@ func (s Store) SetWithTTL(key []byte, item interface{}, ttl time.Duration) error
 		return err
 	}
 
-	s.mem.Set(key, ristrettoItem{item: item, expireAt: time.Now().Add(ttl)}, 1)
+	if item != nil {
+		s.mem.Set(key, ristrettoItem{Item: *item, ExpireAt: time.Now().Add(ttl)}, 1)
+	} else {
+		s.mem.Set(key, ristrettoItem{Empty: true, ExpireAt: time.Now().Add(ttl)}, 1)
+	}
 
 	return nil
 }
 
-func (s Store) Serialize(item interface{}) ([]byte, error) {
+func (s Store) Serialize(item *Result) ([]byte, error) {
 	if item == nil {
 		return nil, nil
 	}
 
 	var buf bytes.Buffer
 	enc := gob.NewEncoder(&buf)
-	err := enc.Encode(item)
+	err := enc.Encode(*item)
 	if err != nil {
 		return nil, err
 	}

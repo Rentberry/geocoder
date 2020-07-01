@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/Rentberry/geocoder/pkg/provider"
 	"net"
 	"net/http"
 	"time"
@@ -18,7 +19,6 @@ import (
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 
-	"github.com/Rentberry/geocoder/pkg/cache"
 	"github.com/Rentberry/geocoder/pkg/config"
 	"github.com/Rentberry/geocoder/pkg/geocoder"
 	"github.com/Rentberry/geocoder/pkg/server"
@@ -42,8 +42,6 @@ func main() {
 
 	if debug {
 		logrus.SetLevel(logrus.DebugLevel)
-	} else {
-		logrus.SetLevel(logrus.WarnLevel)
 	}
 	logrus.SetFormatter(&logrus.TextFormatter{})
 
@@ -73,7 +71,7 @@ func main() {
 		logrus.Fatal(err)
 	}
 
-	cs, err := cache.NewCacheStore(rc)
+	cs, err := provider.NewCacheStore(rc)
 	if err != nil {
 		logrus.Fatal(err)
 	}

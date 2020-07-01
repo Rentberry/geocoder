@@ -8,7 +8,6 @@ import (
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 
-	"github.com/Rentberry/geocoder/pkg/cache"
 	"github.com/Rentberry/geocoder/pkg/config"
 	geocoder "github.com/Rentberry/geocoder/pkg/geocoder"
 	"github.com/Rentberry/geocoder/pkg/provider"
@@ -18,7 +17,7 @@ type geocoderService struct {
 	provider provider.GeocodingProvider
 }
 
-func NewGeocoderServer(cs cache.CacheStore, registry *prometheus.Registry, specification config.Specification) (geocoder.GeocodeServiceServer, error) {
+func NewGeocoderServer(cs provider.CacheStore, registry *prometheus.Registry, specification config.Specification) (geocoder.GeocodeServiceServer, error) {
 	p, err := provider.NewGeocodingProvider(cs, registry, specification)
 	if err != nil {
 		return nil, err

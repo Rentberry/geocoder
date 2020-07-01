@@ -1,7 +1,7 @@
 package provider
 
 import (
-	"errors"
+	"encoding/gob"
 	"strconv"
 	"time"
 
@@ -9,7 +9,6 @@ import (
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc/metadata"
 
-	"github.com/Rentberry/geocoder/pkg/cache"
 	"github.com/Rentberry/geocoder/pkg/config"
 	geocoder "github.com/Rentberry/geocoder/pkg/geocoder"
 )
@@ -24,7 +23,7 @@ type Result struct {
 }
 
 type AggregateProvider struct {
-	cs       cache.CacheStore
+	cs       CacheStore
 	google   GeocodingProvider
 	opencage GeocodingProvider
 }
@@ -45,7 +44,11 @@ var (
 	}, []string{"provider"})
 )
 
-func NewGeocodingProvider(cs cache.CacheStore, registry *prometheus.Registry, specification config.Specification) (GeocodingProvider, error) {
+func init() {
+	gob.Register(Result{})
+}
+
+func NewGeocodingProvider(cs CacheStore, registry *prometheus.Registry, specification config.Specification) (GeocodingProvider, error) {
 	registry.MustRegister(providerVec, cacheVec, countryVec, providerResponseTimesHistogram)
 
 	google, err := NewGoogleGeocodeProvider(specification.GoogleApiKey)
@@ -130,17 +133,12 @@ func (ag *AggregateProvider) checkInCache(key []byte) (*Result, error) {
 		return nil, nil
 	}
 
-	res, ok := item.(Result)
-	if !ok {
-		return nil, errors.New("corrupted cached result")
-	}
-
-	return &res, nil
+	return item, nil
 }
 
 func (ag *AggregateProvider) storeInCache(result *Result, key []byte) error {
 	if result != nil {
-		err := ag.cs.Set(key, *result)
+		err := ag.cs.Set(key, result)
 		if err != nil {
 			return err
 		}
