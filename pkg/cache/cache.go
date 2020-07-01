@@ -3,10 +3,9 @@ package cache
 import (
 	"bytes"
 	"encoding/gob"
-	"time"
-
 	"github.com/dgraph-io/ristretto"
 	"github.com/go-redis/redis/v7"
+	"time"
 )
 
 var DefaultTTL = 180 * 24 * time.Hour
@@ -28,9 +27,10 @@ type ristrettoItem struct {
 }
 
 func NewCacheStore(rc *redis.Client) (*Store, error) {
+	var numberOfItems int64 = 1024
 	rs, err := ristretto.NewCache(&ristretto.Config{
-		NumCounters: (1 << 24) * 10,
-		MaxCost:     1 << 24,
+		NumCounters: numberOfItems * 10,
+		MaxCost:     numberOfItems,
 		BufferItems: 64,
 	})
 	if err != nil {
