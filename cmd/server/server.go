@@ -28,7 +28,6 @@ var cfg config.Specification
 var debug bool
 
 var (
-	logrusLogger = logrus.New()
 	reg          = prometheus.NewRegistry()
 	grpcMetrics  = grpc_prometheus.NewServerMetrics()
 )
@@ -40,10 +39,17 @@ func init() {
 func main() {
 	flag.Parse()
 
+	logrusLogger := logrus.New()
+
+	logrusLogger.SetFormatter(&logrus.JSONFormatter{})
+	logrus.SetFormatter(&logrus.JSONFormatter{})
+
 	if debug {
 		logrus.SetLevel(logrus.DebugLevel)
+		logrusLogger.SetLevel(logrus.DebugLevel)
+		logrus.SetFormatter(&logrus.TextFormatter{})
+		logrusLogger.SetFormatter(&logrus.TextFormatter{})
 	}
-	logrus.SetFormatter(&logrus.TextFormatter{})
 
 	grpcMetrics.EnableHandlingTimeHistogram()
 	logrusEntry := logrus.NewEntry(logrusLogger)
