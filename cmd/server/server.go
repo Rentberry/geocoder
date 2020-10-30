@@ -28,8 +28,8 @@ var cfg config.Specification
 var debug bool
 
 var (
-	reg          = prometheus.NewRegistry()
-	grpcMetrics  = grpc_prometheus.NewServerMetrics()
+	reg         = prometheus.NewRegistry()
+	grpcMetrics = grpc_prometheus.NewServerMetrics()
 )
 
 func init() {
@@ -60,7 +60,7 @@ func main() {
 	}
 
 	var err error
-	cfg, err = proccessConfig()
+	cfg, err = processConfig()
 	if err != nil {
 		logrus.Fatal(err)
 	}
@@ -113,7 +113,7 @@ func main() {
 	// Starts http server for prometheus.
 	go func() {
 		if err := httpServer.ListenAndServe(); err != nil {
-			logrus.Fatal("Unable to start a http server.")
+			logrus.Fatal("unable to start a http server.")
 		}
 	}()
 
@@ -139,7 +139,7 @@ func setupRedis() (*redis.Client, error) {
 	return client, nil
 }
 
-func proccessConfig() (config.Specification, error) {
+func processConfig() (config.Specification, error) {
 	var s config.Specification
 	err := envconfig.Process("", &s)
 	return s, err

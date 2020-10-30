@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>geocoder.LocationRequest</code>
+ * Generated from protobuf message <code>LocationRequest</code>
  */
 class LocationRequest extends \Google\Protobuf\Internal\Message
 {
@@ -22,7 +22,7 @@ class LocationRequest extends \Google\Protobuf\Internal\Message
      */
     protected $address = '';
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng latlng = 3;</code>
+     * Generated from protobuf field <code>.LatLng latlng = 3;</code>
      */
     protected $latlng = null;
     /**
@@ -92,16 +92,26 @@ class LocationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng latlng = 3;</code>
+     * Generated from protobuf field <code>.LatLng latlng = 3;</code>
      * @return \Rentberry\Geocoder\LatLng
      */
     public function getLatlng()
     {
-        return $this->latlng;
+        return isset($this->latlng) ? $this->latlng : null;
+    }
+
+    public function hasLatlng()
+    {
+        return isset($this->latlng);
+    }
+
+    public function clearLatlng()
+    {
+        unset($this->latlng);
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng latlng = 3;</code>
+     * Generated from protobuf field <code>.LatLng latlng = 3;</code>
      * @param \Rentberry\Geocoder\LatLng $var
      * @return $this
      */

@@ -15,6 +15,7 @@ import (
 
 type geocoderService struct {
 	provider provider.GeocodingProvider
+	geocoder.UnimplementedGeocodeServiceServer
 }
 
 func NewGeocoderServer(cs provider.CacheStore, registry *prometheus.Registry, specification config.Specification) (geocoder.GeocodeServiceServer, error) {
@@ -23,7 +24,7 @@ func NewGeocoderServer(cs provider.CacheStore, registry *prometheus.Registry, sp
 		return nil, err
 	}
 
-	return geocoderService{
+	return &geocoderService{
 		provider: p,
 	}, nil
 }

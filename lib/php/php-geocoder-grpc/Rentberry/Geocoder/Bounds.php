@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>geocoder.Bounds</code>
+ * Generated from protobuf message <code>Bounds</code>
  */
 class Bounds extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng northEast = 1;</code>
+     * Generated from protobuf field <code>.LatLng northEast = 1;</code>
      */
     protected $northEast = null;
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng southWest = 2;</code>
+     * Generated from protobuf field <code>.LatLng southWest = 2;</code>
      */
     protected $southWest = null;
 
@@ -38,16 +38,26 @@ class Bounds extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng northEast = 1;</code>
+     * Generated from protobuf field <code>.LatLng northEast = 1;</code>
      * @return \Rentberry\Geocoder\LatLng
      */
     public function getNorthEast()
     {
-        return $this->northEast;
+        return isset($this->northEast) ? $this->northEast : null;
+    }
+
+    public function hasNorthEast()
+    {
+        return isset($this->northEast);
+    }
+
+    public function clearNorthEast()
+    {
+        unset($this->northEast);
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng northEast = 1;</code>
+     * Generated from protobuf field <code>.LatLng northEast = 1;</code>
      * @param \Rentberry\Geocoder\LatLng $var
      * @return $this
      */
@@ -60,16 +70,26 @@ class Bounds extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng southWest = 2;</code>
+     * Generated from protobuf field <code>.LatLng southWest = 2;</code>
      * @return \Rentberry\Geocoder\LatLng
      */
     public function getSouthWest()
     {
-        return $this->southWest;
+        return isset($this->southWest) ? $this->southWest : null;
+    }
+
+    public function hasSouthWest()
+    {
+        return isset($this->southWest);
+    }
+
+    public function clearSouthWest()
+    {
+        unset($this->southWest);
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng southWest = 2;</code>
+     * Generated from protobuf field <code>.LatLng southWest = 2;</code>
      * @param \Rentberry\Geocoder\LatLng $var
      * @return $this
      */

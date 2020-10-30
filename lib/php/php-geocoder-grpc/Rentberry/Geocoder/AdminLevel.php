@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>geocoder.AdminLevel</code>
+ * Generated from protobuf message <code>AdminLevel</code>
  */
 class AdminLevel extends \Google\Protobuf\Internal\Message
 {

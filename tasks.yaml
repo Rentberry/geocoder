@@ -12,13 +12,14 @@ tasks:
     command:
       - |
         protoc --proto_path=./api/ \
-        --go_out=plugins=grpc:./pkg/geocoder \
+        --go_out=./pkg/geocoder \
+        --go-grpc_out=./pkg/geocoder \
         ./api/geocoder.proto \
 
   install-php-protoc-grpc:
     command:
       - rm -rf third_party/grpc
-      - git clone -b v1.28.1 https://github.com/grpc/grpc third_party/grpc
+      - git clone -b v1.32.0 https://github.com/grpc/grpc third_party/grpc
       - cd third_party/grpc && git submodule update --init
       - cd third_party/grpc && make grpc_php_plugin
       - cp third_party/grpc/bins/opt/grpc_php_plugin third_party/grpc_php_plugin

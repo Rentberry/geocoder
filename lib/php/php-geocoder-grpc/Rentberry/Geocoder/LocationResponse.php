@@ -9,12 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>geocoder.LocationResponse</code>
+ * Generated from protobuf message <code>LocationResponse</code>
  */
 class LocationResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>repeated .geocoder.Location locations = 1;</code>
+     * Generated from protobuf field <code>repeated .Location locations = 1;</code>
      */
     private $locations;
     /**
@@ -38,7 +38,7 @@ class LocationResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .geocoder.Location locations = 1;</code>
+     * Generated from protobuf field <code>repeated .Location locations = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLocations()
@@ -47,7 +47,7 @@ class LocationResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .geocoder.Location locations = 1;</code>
+     * Generated from protobuf field <code>repeated .Location locations = 1;</code>
      * @param \Rentberry\Geocoder\Location[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
