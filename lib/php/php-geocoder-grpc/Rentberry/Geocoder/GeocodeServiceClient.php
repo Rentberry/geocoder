@@ -23,7 +23,7 @@ class GeocodeServiceClient extends \Grpc\BaseStub {
      */
     public function Geocode(\Rentberry\Geocoder\LocationRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/geocoder.GeocodeService/Geocode',
+        return $this->_simpleRequest('/GeocodeService/Geocode',
         $argument,
         ['\Rentberry\Geocoder\LocationResponse', 'decode'],
         $metadata, $options);

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>geocoder.Location</code>
+ * Generated from protobuf message <code>Location</code>
  */
 class Location extends \Google\Protobuf\Internal\Message
 {
@@ -50,23 +50,23 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     protected $id = '';
     /**
-     * Generated from protobuf field <code>.geocoder.Country country = 3;</code>
+     * Generated from protobuf field <code>.Country country = 3;</code>
      */
     protected $country = null;
     /**
-     * Generated from protobuf field <code>.geocoder.State state = 12;</code>
+     * Generated from protobuf field <code>.State state = 12;</code>
      */
     protected $state = null;
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng latLng = 10;</code>
+     * Generated from protobuf field <code>.LatLng latLng = 10;</code>
      */
     protected $latLng = null;
     /**
-     * Generated from protobuf field <code>.geocoder.Bounds bounds = 13;</code>
+     * Generated from protobuf field <code>.Bounds bounds = 13;</code>
      */
     protected $bounds = null;
     /**
-     * Generated from protobuf field <code>repeated .geocoder.AdminLevel admin_levels = 11;</code>
+     * Generated from protobuf field <code>repeated .AdminLevel admin_levels = 11;</code>
      */
     private $admin_levels;
     /**
@@ -301,16 +301,26 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.Country country = 3;</code>
+     * Generated from protobuf field <code>.Country country = 3;</code>
      * @return \Rentberry\Geocoder\Country
      */
     public function getCountry()
     {
-        return $this->country;
+        return isset($this->country) ? $this->country : null;
+    }
+
+    public function hasCountry()
+    {
+        return isset($this->country);
+    }
+
+    public function clearCountry()
+    {
+        unset($this->country);
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.Country country = 3;</code>
+     * Generated from protobuf field <code>.Country country = 3;</code>
      * @param \Rentberry\Geocoder\Country $var
      * @return $this
      */
@@ -323,16 +333,26 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.State state = 12;</code>
+     * Generated from protobuf field <code>.State state = 12;</code>
      * @return \Rentberry\Geocoder\State
      */
     public function getState()
     {
-        return $this->state;
+        return isset($this->state) ? $this->state : null;
+    }
+
+    public function hasState()
+    {
+        return isset($this->state);
+    }
+
+    public function clearState()
+    {
+        unset($this->state);
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.State state = 12;</code>
+     * Generated from protobuf field <code>.State state = 12;</code>
      * @param \Rentberry\Geocoder\State $var
      * @return $this
      */
@@ -345,16 +365,26 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng latLng = 10;</code>
+     * Generated from protobuf field <code>.LatLng latLng = 10;</code>
      * @return \Rentberry\Geocoder\LatLng
      */
     public function getLatLng()
     {
-        return $this->latLng;
+        return isset($this->latLng) ? $this->latLng : null;
+    }
+
+    public function hasLatLng()
+    {
+        return isset($this->latLng);
+    }
+
+    public function clearLatLng()
+    {
+        unset($this->latLng);
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng latLng = 10;</code>
+     * Generated from protobuf field <code>.LatLng latLng = 10;</code>
      * @param \Rentberry\Geocoder\LatLng $var
      * @return $this
      */
@@ -367,16 +397,26 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.Bounds bounds = 13;</code>
+     * Generated from protobuf field <code>.Bounds bounds = 13;</code>
      * @return \Rentberry\Geocoder\Bounds
      */
     public function getBounds()
     {
-        return $this->bounds;
+        return isset($this->bounds) ? $this->bounds : null;
+    }
+
+    public function hasBounds()
+    {
+        return isset($this->bounds);
+    }
+
+    public function clearBounds()
+    {
+        unset($this->bounds);
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.Bounds bounds = 13;</code>
+     * Generated from protobuf field <code>.Bounds bounds = 13;</code>
      * @param \Rentberry\Geocoder\Bounds $var
      * @return $this
      */
@@ -389,7 +429,7 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .geocoder.AdminLevel admin_levels = 11;</code>
+     * Generated from protobuf field <code>repeated .AdminLevel admin_levels = 11;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAdminLevels()
@@ -398,7 +438,7 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .geocoder.AdminLevel admin_levels = 11;</code>
+     * Generated from protobuf field <code>repeated .AdminLevel admin_levels = 11;</code>
      * @param \Rentberry\Geocoder\AdminLevel[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

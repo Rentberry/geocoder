@@ -9,12 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>geocoder.TimezoneRequest</code>
+ * Generated from protobuf message <code>TimezoneRequest</code>
  */
 class TimezoneRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng latlng = 1;</code>
+     * Generated from protobuf field <code>.LatLng latlng = 1;</code>
      */
     protected $latlng = null;
 
@@ -33,16 +33,26 @@ class TimezoneRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng latlng = 1;</code>
+     * Generated from protobuf field <code>.LatLng latlng = 1;</code>
      * @return \Rentberry\Geocoder\LatLng
      */
     public function getLatlng()
     {
-        return $this->latlng;
+        return isset($this->latlng) ? $this->latlng : null;
+    }
+
+    public function hasLatlng()
+    {
+        return isset($this->latlng);
+    }
+
+    public function clearLatlng()
+    {
+        unset($this->latlng);
     }
 
     /**
-     * Generated from protobuf field <code>.geocoder.LatLng latlng = 1;</code>
+     * Generated from protobuf field <code>.LatLng latlng = 1;</code>
      * @param \Rentberry\Geocoder\LatLng $var
      * @return $this
      */

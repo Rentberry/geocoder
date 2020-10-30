@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>geocoder.Timezone</code>
+ * Generated from protobuf message <code>Timezone</code>
  */
 class Timezone extends \Google\Protobuf\Internal\Message
 {

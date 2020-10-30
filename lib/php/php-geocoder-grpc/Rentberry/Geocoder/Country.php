@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>geocoder.Country</code>
+ * Generated from protobuf message <code>Country</code>
  */
 class Country extends \Google\Protobuf\Internal\Message
 {

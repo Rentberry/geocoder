@@ -23,7 +23,7 @@ class TimezoneServiceClient extends \Grpc\BaseStub {
      */
     public function Lookup(\Rentberry\Geocoder\TimezoneRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/geocoder.TimezoneService/Lookup',
+        return $this->_simpleRequest('/TimezoneService/Lookup',
         $argument,
         ['\Rentberry\Geocoder\Timezone', 'decode'],
         $metadata, $options);

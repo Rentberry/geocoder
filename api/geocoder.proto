@@ -1,6 +1,6 @@
 syntax = "proto3";
-package geocoder;
 
+option go_package = "github.com/Rentberry/geocoder";
 option php_namespace = "Rentberry\\Geocoder";
 
 message Location {

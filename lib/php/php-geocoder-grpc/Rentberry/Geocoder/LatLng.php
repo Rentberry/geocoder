@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>geocoder.LatLng</code>
+ * Generated from protobuf message <code>LatLng</code>
  */
 class LatLng extends \Google\Protobuf\Internal\Message
 {

@@ -8,10 +8,12 @@ import (
 	geocoder "github.com/Rentberry/geocoder/pkg/geocoder"
 )
 
-type TimezoneServer struct{}
+type TimezoneServer struct {
+	geocoder.UnimplementedTimezoneServiceServer
+}
 
-func NewTimezoneServer() TimezoneServer {
-	return TimezoneServer{}
+func NewTimezoneServer() *TimezoneServer {
+	return &TimezoneServer{}
 }
 
 func (t TimezoneServer) Lookup(ctx context.Context, r *geocoder.TimezoneRequest) (*geocoder.Timezone, error) {
