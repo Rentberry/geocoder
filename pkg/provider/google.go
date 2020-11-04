@@ -135,7 +135,12 @@ func updateFromComponents(location *geocoder.Location, components []maps.Address
 			switch vv {
 			case "postal_code":
 				location.PostalCode = v.LongName
-			case "locality", "postal_town":
+			case "locality":
+				location.Locality = v.LongName
+			case "postal_town":
+				if location.Locality == "" {
+					location.Locality = v.LongName
+				}
 				location.Locality = v.LongName
 			case "street_number":
 				location.StreetNumber = v.LongName
