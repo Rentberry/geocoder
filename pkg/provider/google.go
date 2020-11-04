@@ -141,7 +141,6 @@ func updateFromComponents(location *geocoder.Location, components []maps.Address
 				if location.Locality == "" {
 					location.Locality = v.LongName
 				}
-				location.Locality = v.LongName
 			case "street_number":
 				location.StreetNumber = v.LongName
 			case "route":
