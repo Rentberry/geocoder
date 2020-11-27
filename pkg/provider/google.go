@@ -151,6 +151,12 @@ func updateFromComponents(location *geocoder.Location, components []maps.Address
 				if location.Sublocality == "" {
 					location.Sublocality = v.LongName
 				}
+			case "sublocality_level_1":
+				// TODO uncomment line after *.pb.go generated
+				//location.SublocalityLevels = append(location.SublocalityLevels, &geocoder.SublocalityLevel(Name: v.LongName, Level: 1))
+			case "sublocality_level_2":
+				// TODO uncomment line after *.pb.go generated
+				//location.SublocalityLevels = append(location.SublocalityLevels, &geocoder.SublocalityLevel(Name: v.LongName, Level: 2))
 			case "administrative_area_level_1":
 				location.AdminLevels = append(location.AdminLevels, &geocoder.AdminLevel{Name: v.LongName, Code: v.ShortName, Level: 1})
 				location.State = &geocoder.State{Name: v.LongName, Code: v.ShortName}
