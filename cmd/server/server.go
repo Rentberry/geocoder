@@ -126,7 +126,7 @@ func main() {
 func setupRedis() (*redis.Client, error) {
 	client := redis.NewClient(&redis.Options{
 		Addr:         fmt.Sprintf("%s:%s", cfg.RedisHost, cfg.RedisPort),
-		DB:           15,
+		DB:           cfg.RedisDatabase,
 		MinIdleConns: 2,
 		MaxConnAge:   1 * time.Hour,
 	})
@@ -135,6 +135,8 @@ func setupRedis() (*redis.Client, error) {
 	if err := status.Err(); err != nil {
 		return nil, err
 	}
+
+	logrus.Infof("connected to redis: %s:%s[%d]", cfg.RedisHost, cfg.RedisPort, cfg.RedisDatabase)
 
 	return client, nil
 }
