@@ -20,6 +20,7 @@ message Location {
     Bounds bounds = 13;
 
     repeated AdminLevel admin_levels = 11;
+    repeated SublocalityLevel sublocality_levels = 22;
 
     map<string, string> components = 21;
 }
@@ -33,6 +34,11 @@ message AdminLevel {
     int32 level = 1;
     string name = 2;
     string code = 3;
+}
+
+message SublocalityLevel {
+    int32 level = 1;
+    string name = 2;
 }
 
 message Country {
