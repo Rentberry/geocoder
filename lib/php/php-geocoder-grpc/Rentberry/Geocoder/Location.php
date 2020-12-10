@@ -70,6 +70,10 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     private $admin_levels;
     /**
+     * Generated from protobuf field <code>repeated .SublocalityLevel sublocality_levels = 22;</code>
+     */
+    private $sublocality_levels;
+    /**
      * Generated from protobuf field <code>map<string, string> components = 21;</code>
      */
     private $components;
@@ -94,6 +98,7 @@ class Location extends \Google\Protobuf\Internal\Message
      *     @type \Rentberry\Geocoder\LatLng $latLng
      *     @type \Rentberry\Geocoder\Bounds $bounds
      *     @type \Rentberry\Geocoder\AdminLevel[]|\Google\Protobuf\Internal\RepeatedField $admin_levels
+     *     @type \Rentberry\Geocoder\SublocalityLevel[]|\Google\Protobuf\Internal\RepeatedField $sublocality_levels
      *     @type array|\Google\Protobuf\Internal\MapField $components
      * }
      */
@@ -446,6 +451,28 @@ class Location extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Rentberry\Geocoder\AdminLevel::class);
         $this->admin_levels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .SublocalityLevel sublocality_levels = 22;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSublocalityLevels()
+    {
+        return $this->sublocality_levels;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .SublocalityLevel sublocality_levels = 22;</code>
+     * @param \Rentberry\Geocoder\SublocalityLevel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSublocalityLevels($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Rentberry\Geocoder\SublocalityLevel::class);
+        $this->sublocality_levels = $arr;
 
         return $this;
     }

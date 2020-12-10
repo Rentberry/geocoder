@@ -20,6 +20,7 @@ class GeocodeServiceClient extends \Grpc\BaseStub {
      * @param \Rentberry\Geocoder\LocationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function Geocode(\Rentberry\Geocoder\LocationRequest $argument,
       $metadata = [], $options = []) {

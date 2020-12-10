@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"errors"
 
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/prometheus/client_golang/prometheus"
@@ -37,8 +38,13 @@ func (g geocoderService) Geocode(ctx context.Context, r *geocoder.LocationReques
 	}
 
 	if r.Latlng != nil {
+		q.Reverse = true
 		q.Lat = r.Latlng.Lat
 		q.Lng = r.Latlng.Lng
+	}
+
+	if q.Reverse == false && q.Address == "" {
+		return nil, errors.New("empty geocoding request")
 	}
 
 	res, err := g.provider.Geocode(q)

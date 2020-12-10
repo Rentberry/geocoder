@@ -30,7 +30,7 @@ func NewGeocodeServiceClient(cc grpc.ClientConnInterface) GeocodeServiceClient {
 
 func (c *geocodeServiceClient) Geocode(ctx context.Context, in *LocationRequest, opts ...grpc.CallOption) (*LocationResponse, error) {
 	out := new(LocationResponse)
-	err := c.cc.Invoke(ctx, "/geocoder.GeocodeService/Geocode", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/GeocodeService/Geocode", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,7 +68,7 @@ func _GeocodeService_Geocode_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/geocoder.GeocodeService/Geocode",
+		FullMethod: "/GeocodeService/Geocode",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GeocodeServiceServer).Geocode(ctx, req.(*LocationRequest))
@@ -77,7 +77,7 @@ func _GeocodeService_Geocode_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 var _GeocodeService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "geocoder.GeocodeService",
+	ServiceName: "GeocodeService",
 	HandlerType: (*GeocodeServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -106,7 +106,7 @@ func NewTimezoneServiceClient(cc grpc.ClientConnInterface) TimezoneServiceClient
 
 func (c *timezoneServiceClient) Lookup(ctx context.Context, in *TimezoneRequest, opts ...grpc.CallOption) (*Timezone, error) {
 	out := new(Timezone)
-	err := c.cc.Invoke(ctx, "/geocoder.TimezoneService/Lookup", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/TimezoneService/Lookup", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -144,7 +144,7 @@ func _TimezoneService_Lookup_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/geocoder.TimezoneService/Lookup",
+		FullMethod: "/TimezoneService/Lookup",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TimezoneServiceServer).Lookup(ctx, req.(*TimezoneRequest))
@@ -153,7 +153,7 @@ func _TimezoneService_Lookup_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 var _TimezoneService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "geocoder.TimezoneService",
+	ServiceName: "TimezoneService",
 	HandlerType: (*TimezoneServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

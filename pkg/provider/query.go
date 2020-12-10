@@ -13,6 +13,7 @@ type Query struct {
 	Provider string
 	Lat      float64
 	Lng      float64
+	Reverse  bool
 	Query    map[string]string
 }
 
@@ -34,5 +35,5 @@ func (q Query) Hash() []byte {
 }
 
 func (q *Query) isReverse() bool {
-	return q.Address == ""
+	return q.Reverse
 }

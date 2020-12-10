@@ -20,6 +20,7 @@ class TimezoneServiceClient extends \Grpc\BaseStub {
      * @param \Rentberry\Geocoder\TimezoneRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function Lookup(\Rentberry\Geocoder\TimezoneRequest $argument,
       $metadata = [], $options = []) {
