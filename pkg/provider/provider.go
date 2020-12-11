@@ -15,6 +15,7 @@ import (
 
 const GoogleProviderType = "google"
 const OpencageProviderType = "opencage"
+const CacheTTL = 365 * 24 * time.Hour
 
 type Result struct {
 	Provider  string
@@ -76,15 +77,13 @@ func (ap AggregateProvider) Geocode(q Query) (*Result, error) {
 		q.Provider = OpencageProviderType
 	}
 
-	k := q.Hash()
-	result, err := ap.checkInCache(k)
+	result, err := ap.checkInCache(q)
 	if err != nil {
 		logrus.Warning(err)
 	}
 
 	if result != nil {
 		cacheVec.WithLabelValues(q.Provider, "hit").Inc()
-		result.Metadata = metadata.Pairs("cache-key", string(k))
 
 		return result, nil
 	}
@@ -109,36 +108,58 @@ func (ap AggregateProvider) Geocode(q Query) (*Result, error) {
 		Inc()
 
 	if err == nil {
-		err = ap.storeInCache(result, k)
+		err = ap.storeInCache(result, q)
 		if err != nil {
 			logrus.Warning(err)
 		}
 
 		if result != nil && len(result.Locations) > 0 {
 			countryVec.WithLabelValues(q.Provider, result.Locations[0].Country.Code).Inc()
-			result.Metadata = metadata.Pairs("cache-key", string(k))
+
 		}
 	}
 
 	return result, err
 }
 
-func (ag *AggregateProvider) checkInCache(key []byte) (*Result, error) {
+func (ag *AggregateProvider) checkInCache(q Query) (*Result, error) {
+	key := q.Key()
 	item, err := ag.cs.Get(key)
 	if err != nil {
 		return nil, err
 	}
 
-	if item == nil {
-		return nil, nil
+	if item != nil {
+		item.Metadata = metadata.Pairs("cache-key", string(key))
+		return item, nil
+	}
+
+	// To gracefully migrate old keys to new ones
+	oldKey := q.Hash()
+	item, err = ag.cs.Get(oldKey)
+	if err != nil {
+		return nil, err
+	}
+
+	if item != nil {
+		err = ag.cs.Del(oldKey)
+		if err != nil {
+			return item, err
+		}
+
+		err = ag.cs.Set(key, item)
+		if err != nil {
+			return item, err
+		}
 	}
 
 	return item, nil
 }
 
-func (ag *AggregateProvider) storeInCache(result *Result, key []byte) error {
+func (ag *AggregateProvider) storeInCache(result *Result, q Query) error {
+	key := q.Key()
 	if result != nil {
-		err := ag.cs.Set(key, result)
+		err := ag.cs.SetWithTTL(key, result, CacheTTL)
 		if err != nil {
 			return err
 		}

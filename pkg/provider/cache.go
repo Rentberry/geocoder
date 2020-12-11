@@ -14,6 +14,7 @@ type CacheStore interface {
 	Get(key []byte) (*Result, error)
 	Set(key []byte, item *Result) error
 	SetWithTTL(key []byte, item *Result, ttl time.Duration) error
+	Del(key []byte) error
 }
 
 type Store struct {
@@ -96,6 +97,12 @@ func (s Store) SetWithTTL(key []byte, item *Result, ttl time.Duration) error {
 	}
 
 	return nil
+}
+
+func (s *Store) Del(key []byte) error {
+	s.mem.Del(key)
+
+	return s.rdb.Del(string(key)).Err()
 }
 
 func (s Store) Serialize(item *Result) ([]byte, error) {
