@@ -6,10 +6,13 @@ import (
 	"encoding/hex"
 	"fmt"
 	"net/url"
+	"regexp"
 	"strings"
 
 	"github.com/sirupsen/logrus"
 )
+
+var queryRegexp = regexp.MustCompile("\\w+")
 
 type Query struct {
 	Address  string
@@ -61,4 +64,24 @@ func (q Query) Key() []byte {
 
 func (q *Query) isReverse() bool {
 	return q.Address == ""
+}
+
+func (q Query) IsValid() bool {
+	if q.Address == "" && q.Lat == 0 && q.Lng == 0 {
+		return false
+	}
+
+	if q.Address != "" && !queryRegexp.MatchString(q.Address) {
+		return false
+	}
+
+	if q.Lat < -90 || q.Lat > 90 {
+		return false
+	}
+
+	if q.Lng < -180 || q.Lng > 180 {
+		return false
+	}
+
+	return true
 }
