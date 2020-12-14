@@ -142,12 +142,12 @@ func (ag *AggregateProvider) checkInCache(q Query) (*Result, error) {
 	}
 
 	if item != nil {
-		err = ag.cs.Del(oldKey)
+		err = ag.cs.Set(key, item)
 		if err != nil {
 			return item, err
 		}
 
-		err = ag.cs.Set(key, item)
+		err = ag.cs.Del(oldKey)
 		if err != nil {
 			return item, err
 		}

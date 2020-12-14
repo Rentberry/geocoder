@@ -3,13 +3,14 @@ package server
 import (
 	"context"
 	"errors"
+	"fmt"
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	"github.com/prometheus/client_golang/prometheus"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 
 	"github.com/Rentberry/geocoder/pkg/config"
-	geocoder "github.com/Rentberry/geocoder/pkg/geocoder"
+	"github.com/Rentberry/geocoder/pkg/geocoder"
 	"github.com/Rentberry/geocoder/pkg/provider"
 )
 
@@ -47,7 +48,7 @@ func (g geocoderService) Geocode(ctx context.Context, r *geocoder.LocationReques
 
 	res, err := g.provider.Geocode(q)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("%w; Query: %+v", err, q)
 	}
 
 	grpc_ctxtags.Extract(ctx).
