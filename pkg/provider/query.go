@@ -68,7 +68,9 @@ func (q *Query) isReverse() bool {
 
 func (q Query) IsValid() bool {
 	if q.Address == "" && q.Lat == 0 && q.Lng == 0 {
-		return false
+		if placeId, ok := q.Query["place_id"]; !ok || placeId == "" {
+			return false
+		}
 	}
 
 	if q.Address != "" && !queryRegexp.MatchString(q.Address) {
