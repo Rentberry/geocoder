@@ -12,7 +12,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var queryRegexp = regexp.MustCompile("\\w+")
+var queryRegexp = regexp.MustCompile("[\\d\\p{L}\\p{M}\\-]+")
 
 type Query struct {
 	Address  string
