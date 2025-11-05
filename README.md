@@ -3,6 +3,35 @@ Adapter for external geocoding services with caching, monitoring, metrics etc. H
 Supports [Google's Geocoding API](https://developers.google.com/maps/documentation/geocoding/start) and [Opencage](https://opencagedata.com) for now.
 
 # Usage
+## Docker Compose (Recommended)
+The easiest way to run the service is using Docker Compose:
+
+1. Copy the example environment file and fill in your API keys:
+```bash
+cp .env.example .env
+# Edit .env and add your GOOGLE_API_KEY_SERVER and OPENCAGE_API_KEY
+```
+
+2. Start the services:
+```bash
+docker-compose up -d
+```
+
+This will start:
+- Redis on port `6379`
+- Geocoding service on port `8080` (gRPC)
+- Prometheus metrics endpoint on port `9092`
+
+3. Check the logs:
+```bash
+docker-compose logs -f geocoder
+```
+
+4. Stop the services:
+```bash
+docker-compose down
+```
+
 ## Docker image
 ```
 docker run \
