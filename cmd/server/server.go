@@ -18,6 +18,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 
 	"github.com/Rentberry/geocoder/pkg/config"
 	"github.com/Rentberry/geocoder/pkg/geocoder"
@@ -105,6 +106,9 @@ func main() {
 
 	geocoder.RegisterGeocodeServiceServer(grpcServer, srv)
 	geocoder.RegisterTimezoneServiceServer(grpcServer, server.NewTimezoneServer())
+
+	// Register reflection service on gRPC server.
+	reflection.Register(grpcServer)
 
 	// Initialize all metrics.
 	reg.MustRegister(grpcMetrics)

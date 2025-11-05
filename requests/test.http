@@ -1,0 +1,10 @@
+GRPC localhost:8080/GeocodeService/Geocode
+Proto-File: ../api/geocoder.proto
+
+{
+  "address": "Berlin",
+  "provider": "opencage",
+  "query": {
+    "language": "en"
+  }
+}
