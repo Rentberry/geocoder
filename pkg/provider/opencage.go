@@ -77,6 +77,13 @@ func (o OpencageProvider) Geocode(q Query) (*Result, error) {
 			Timezone:   stringify(result.Components["timezone"]),
 		}
 
+		// Extract types from OpenCage _type field
+		var types []string
+		if typeValue := result.Components["_type"]; typeValue != nil {
+			types = []string{stringify(typeValue)}
+		}
+		loc.Types = types
+
 		if state, ok := result.Components["state"]; ok {
 			loc.AdminLevels = append(loc.AdminLevels, &geocoder.AdminLevel{Name: stringify(state), Code: stringify(result.Components["state_code"]), Level: 1})
 		}

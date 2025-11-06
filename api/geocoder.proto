@@ -21,6 +21,7 @@ message Location {
 
     repeated AdminLevel admin_levels = 11;
     repeated SublocalityLevel sublocality_levels = 22;
+    repeated string types = 23;
 
     map<string, string> components = 21;
 }

@@ -39,11 +39,11 @@ class Bounds extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.LatLng northEast = 1;</code>
-     * @return \Rentberry\Geocoder\LatLng
+     * @return \Rentberry\Geocoder\LatLng|null
      */
     public function getNorthEast()
     {
-        return isset($this->northEast) ? $this->northEast : null;
+        return $this->northEast;
     }
 
     public function hasNorthEast()
@@ -71,11 +71,11 @@ class Bounds extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.LatLng southWest = 2;</code>
-     * @return \Rentberry\Geocoder\LatLng
+     * @return \Rentberry\Geocoder\LatLng|null
      */
     public function getSouthWest()
     {
-        return isset($this->southWest) ? $this->southWest : null;
+        return $this->southWest;
     }
 
     public function hasSouthWest()

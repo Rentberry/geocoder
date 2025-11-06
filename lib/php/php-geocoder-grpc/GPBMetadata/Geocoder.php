@@ -16,8 +16,8 @@ class Geocoder
         }
         $pool->internalAddGeneratedFile(
             '
-ð	
-geocoder.proto"Õ
+ÿ	
+geocoder.proto"ä
 Location
 provider (	
 formatted_address (	
@@ -35,7 +35,8 @@ class Geocoder
  (2.LatLng
 bounds (2.Bounds!
 admin_levels (2.AdminLevel-
-sublocality_levels (2.SublocalityLevel-
+sublocality_levels (2.SublocalityLevel
+types (	-
 
 components (2.Location.ComponentsEntry1
 ComponentsEntry

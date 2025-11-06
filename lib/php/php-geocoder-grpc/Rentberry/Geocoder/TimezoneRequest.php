@@ -34,11 +34,11 @@ class TimezoneRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.LatLng latlng = 1;</code>
-     * @return \Rentberry\Geocoder\LatLng
+     * @return \Rentberry\Geocoder\LatLng|null
      */
     public function getLatlng()
     {
-        return isset($this->latlng) ? $this->latlng : null;
+        return $this->latlng;
     }
 
     public function hasLatlng()
