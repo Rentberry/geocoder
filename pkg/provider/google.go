@@ -79,6 +79,7 @@ func (g GoogleProvider) Geocode(q Query) (*Result, error) {
 				Lng: results[0].Geometry.Location.Lng,
 			},
 			Components: make(map[string]string),
+			Types:      result.Types,
 		}
 		loc.Country.Code, loc.Country.Name = matchGoogleComponent(result, "country")
 

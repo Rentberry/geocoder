@@ -28,7 +28,7 @@ class LocationResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Rentberry\Geocoder\Location[]|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type array<\Rentberry\Geocoder\Location>|\Google\Protobuf\Internal\RepeatedField $locations
      *     @type bool $exists
      * }
      */
@@ -48,7 +48,7 @@ class LocationResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .Location locations = 1;</code>
-     * @param \Rentberry\Geocoder\Location[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Rentberry\Geocoder\Location>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocations($var)

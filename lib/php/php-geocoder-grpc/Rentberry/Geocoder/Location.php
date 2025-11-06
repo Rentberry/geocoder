@@ -74,6 +74,10 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     private $sublocality_levels;
     /**
+     * Generated from protobuf field <code>repeated string types = 23;</code>
+     */
+    private $types;
+    /**
      * Generated from protobuf field <code>map<string, string> components = 21;</code>
      */
     private $components;
@@ -97,8 +101,9 @@ class Location extends \Google\Protobuf\Internal\Message
      *     @type \Rentberry\Geocoder\State $state
      *     @type \Rentberry\Geocoder\LatLng $latLng
      *     @type \Rentberry\Geocoder\Bounds $bounds
-     *     @type \Rentberry\Geocoder\AdminLevel[]|\Google\Protobuf\Internal\RepeatedField $admin_levels
-     *     @type \Rentberry\Geocoder\SublocalityLevel[]|\Google\Protobuf\Internal\RepeatedField $sublocality_levels
+     *     @type array<\Rentberry\Geocoder\AdminLevel>|\Google\Protobuf\Internal\RepeatedField $admin_levels
+     *     @type array<\Rentberry\Geocoder\SublocalityLevel>|\Google\Protobuf\Internal\RepeatedField $sublocality_levels
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $types
      *     @type array|\Google\Protobuf\Internal\MapField $components
      * }
      */
@@ -307,11 +312,11 @@ class Location extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.Country country = 3;</code>
-     * @return \Rentberry\Geocoder\Country
+     * @return \Rentberry\Geocoder\Country|null
      */
     public function getCountry()
     {
-        return isset($this->country) ? $this->country : null;
+        return $this->country;
     }
 
     public function hasCountry()
@@ -339,11 +344,11 @@ class Location extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.State state = 12;</code>
-     * @return \Rentberry\Geocoder\State
+     * @return \Rentberry\Geocoder\State|null
      */
     public function getState()
     {
-        return isset($this->state) ? $this->state : null;
+        return $this->state;
     }
 
     public function hasState()
@@ -371,11 +376,11 @@ class Location extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.LatLng latLng = 10;</code>
-     * @return \Rentberry\Geocoder\LatLng
+     * @return \Rentberry\Geocoder\LatLng|null
      */
     public function getLatLng()
     {
-        return isset($this->latLng) ? $this->latLng : null;
+        return $this->latLng;
     }
 
     public function hasLatLng()
@@ -403,11 +408,11 @@ class Location extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.Bounds bounds = 13;</code>
-     * @return \Rentberry\Geocoder\Bounds
+     * @return \Rentberry\Geocoder\Bounds|null
      */
     public function getBounds()
     {
-        return isset($this->bounds) ? $this->bounds : null;
+        return $this->bounds;
     }
 
     public function hasBounds()
@@ -444,7 +449,7 @@ class Location extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .AdminLevel admin_levels = 11;</code>
-     * @param \Rentberry\Geocoder\AdminLevel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Rentberry\Geocoder\AdminLevel>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdminLevels($var)
@@ -466,13 +471,35 @@ class Location extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .SublocalityLevel sublocality_levels = 22;</code>
-     * @param \Rentberry\Geocoder\SublocalityLevel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Rentberry\Geocoder\SublocalityLevel>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSublocalityLevels($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Rentberry\Geocoder\SublocalityLevel::class);
         $this->sublocality_levels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated string types = 23;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTypes()
+    {
+        return $this->types;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated string types = 23;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->types = $arr;
 
         return $this;
     }
