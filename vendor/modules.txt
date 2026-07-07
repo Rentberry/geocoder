@@ -1,18 +1,21 @@
 # github.com/beorn7/perks v1.0.1
+## explicit; go 1.11
 github.com/beorn7/perks/quantile
 # github.com/bradfitz/latlong v0.0.0-20170410180902-f3db6d0dff40
 ## explicit
 github.com/bradfitz/latlong
 # github.com/cespare/xxhash v1.1.0
+## explicit
 github.com/cespare/xxhash
 # github.com/cespare/xxhash/v2 v2.1.1
+## explicit; go 1.11
 github.com/cespare/xxhash/v2
 # github.com/dgraph-io/ristretto v0.0.2
-## explicit
+## explicit; go 1.12
 github.com/dgraph-io/ristretto
 github.com/dgraph-io/ristretto/z
 # github.com/go-redis/redis/v7 v7.4.0
-## explicit
+## explicit; go 1.11
 github.com/go-redis/redis/v7
 github.com/go-redis/redis/v7/internal
 github.com/go-redis/redis/v7/internal/consistenthash
@@ -23,7 +26,7 @@ github.com/go-redis/redis/v7/internal/util
 # github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0
 ## explicit
 # github.com/golang/protobuf v1.4.2
-## explicit
+## explicit; go 1.9
 github.com/golang/protobuf/jsonpb
 github.com/golang/protobuf/proto
 github.com/golang/protobuf/protoc-gen-go/descriptor
@@ -31,10 +34,13 @@ github.com/golang/protobuf/ptypes
 github.com/golang/protobuf/ptypes/any
 github.com/golang/protobuf/ptypes/duration
 github.com/golang/protobuf/ptypes/timestamp
+# github.com/google/go-cmp v0.6.0
+## explicit; go 1.13
 # github.com/google/uuid v1.1.1
+## explicit
 github.com/google/uuid
 # github.com/grpc-ecosystem/go-grpc-middleware v1.2.0
-## explicit
+## explicit; go 1.13
 github.com/grpc-ecosystem/go-grpc-middleware
 github.com/grpc-ecosystem/go-grpc-middleware/logging
 github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus
@@ -49,31 +55,36 @@ github.com/grpc-ecosystem/go-grpc-prometheus
 ## explicit
 github.com/kelseyhightower/envconfig
 # github.com/konsorten/go-windows-terminal-sequences v1.0.3
+## explicit
 github.com/konsorten/go-windows-terminal-sequences
 # github.com/matttproud/golang_protobuf_extensions v1.0.1
+## explicit
 github.com/matttproud/golang_protobuf_extensions/pbutil
 # github.com/prometheus/client_golang v1.6.0
-## explicit
+## explicit; go 1.11
 github.com/prometheus/client_golang/prometheus
 github.com/prometheus/client_golang/prometheus/internal
 github.com/prometheus/client_golang/prometheus/promhttp
 # github.com/prometheus/client_model v0.2.0
+## explicit; go 1.9
 github.com/prometheus/client_model/go
 # github.com/prometheus/common v0.9.1
+## explicit; go 1.11
 github.com/prometheus/common/expfmt
 github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg
 github.com/prometheus/common/model
 # github.com/prometheus/procfs v0.0.11
+## explicit; go 1.12
 github.com/prometheus/procfs
 github.com/prometheus/procfs/internal/fs
 github.com/prometheus/procfs/internal/util
 # github.com/sergi/go-diff v1.1.0
-## explicit
+## explicit; go 1.12
 # github.com/sirupsen/logrus v1.6.0
-## explicit
+## explicit; go 1.13
 github.com/sirupsen/logrus
 # go.opencensus.io v0.22.3
-## explicit
+## explicit; go 1.13
 go.opencensus.io/internal/tagencoding
 go.opencensus.io/metric/metricdata
 go.opencensus.io/metric/metricproducer
@@ -82,30 +93,37 @@ go.opencensus.io/stats
 go.opencensus.io/stats/internal
 go.opencensus.io/stats/view
 go.opencensus.io/tag
-# golang.org/x/image v0.0.0-20200430140353-33d19683fad8
-## explicit
-# golang.org/x/net v0.0.0-20190923162816-aa69164e4478
+# golang.org/x/image v0.41.0
+## explicit; go 1.25.0
+# golang.org/x/net v0.53.0
+## explicit; go 1.25.0
 golang.org/x/net/context
 golang.org/x/net/http/httpguts
 golang.org/x/net/http2
 golang.org/x/net/http2/hpack
 golang.org/x/net/idna
+golang.org/x/net/internal/httpcommon
+golang.org/x/net/internal/httpsfv
 golang.org/x/net/internal/timeseries
 golang.org/x/net/trace
-# golang.org/x/sys v0.0.0-20200420163511-1957bb5e6d1f
+# golang.org/x/sys v0.43.0
+## explicit; go 1.25.0
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# golang.org/x/text v0.3.2
+# golang.org/x/text v0.37.0
+## explicit; go 1.25.0
 golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
 golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
 # golang.org/x/time v0.0.0-20200416051211-89c76fbcd5d1
+## explicit
 golang.org/x/time/rate
 # google.golang.org/genproto v0.0.0-20190819201941-24fa4b261c55
+## explicit
 google.golang.org/genproto/googleapis/rpc/status
 # google.golang.org/grpc v1.29.1
-## explicit
+## explicit; go 1.11
 google.golang.org/grpc
 google.golang.org/grpc/attributes
 google.golang.org/grpc/backoff
@@ -148,7 +166,7 @@ google.golang.org/grpc/stats
 google.golang.org/grpc/status
 google.golang.org/grpc/tap
 # google.golang.org/protobuf v1.23.0
-## explicit
+## explicit; go 1.9
 google.golang.org/protobuf/encoding/protojson
 google.golang.org/protobuf/encoding/prototext
 google.golang.org/protobuf/encoding/protowire
@@ -184,7 +202,7 @@ google.golang.org/protobuf/types/known/anypb
 google.golang.org/protobuf/types/known/durationpb
 google.golang.org/protobuf/types/known/timestamppb
 # googlemaps.github.io/maps v1.2.0
-## explicit
+## explicit; go 1.14
 googlemaps.github.io/maps
 googlemaps.github.io/maps/internal
 googlemaps.github.io/maps/metrics
